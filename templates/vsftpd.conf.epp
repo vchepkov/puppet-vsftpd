@@ -1,0 +1,38 @@
+# Managed by puppet
+anonymous_enable=<%= $vsftpd::anonymous_enable ? { true => 'YES', default => 'NO'} %>
+#
+<% if $vsftpd::local_enable { -%>
+local_enable=YES
+chroot_local_user=YES
+allow_writeable_chroot=YES
+<% } else { -%>
+local_enable=NO
+<% } -%>
+#
+write_enable=<%= $vsftpd::write_enable ? { true => 'YES', default => 'NO'} %>
+#
+local_umask=<%= $vsftpd::local_umask %>
+#
+connect_from_port_20=YES
+#
+xferlog_enable=YES
+xferlog_file=/var/log/xferlog
+#
+ftpd_banner=<%= $vsftpd::ftpd_banner %>
+#
+<% if $vsftpd::listen_ipv6 { -%>
+listen_ipv6=YES
+<% } else { -%>
+listen=YES
+<% } -%>
+#
+pam_service_name=vsftpd
+#
+userlist_enable=YES
+userlist_file=/etc/vsftpd/user_list
+<% if $vsftpd::pasv_enable { -%>
+#
+pasv_enable=YES
+pasv_min_port=<%= $vsftpd::pasv_min_port %>
+pasv_max_port=<%= $vsftpd::pasv_max_port %>
+<% } -%>
