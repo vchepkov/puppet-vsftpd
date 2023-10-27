@@ -5,8 +5,8 @@
   "summary": "Install and configure vsftpd",
   "license": "Apache-2.0",
   "source": "https://github.com/vchepkov/vchepkov-vsftpd.git",
-  "project_page": "https://github.com/vchepkov/vchepkov-vsftpd",
-  "issues_url": "https://github.com/vchepkov/vchepkov-vsftpd/issues",
+  "project_page": "https://github.com/vchepkov/puppet-vsftpd",
+  "issues_url": "https://github.com/vchepkov/puppet-vsftpd/issues",
   "dependencies": [
 
   ],
