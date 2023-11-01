@@ -1,4 +1,5 @@
 class vsftpd (
+  Boolean $enable = true,
   Boolean $anonymous_enable = false,
   Boolean $local_enable = true,
   Boolean $write_enable = true,
@@ -9,18 +10,25 @@ class vsftpd (
   Integer $pasv_min_port = 10090,
   Integer $pasv_max_port = 10100,
 ) {
-  package { 'vsftpd': }
+  if $enable {
+    package { 'vsftpd': }
 
-  -> file { '/etc/vsftpd/vsftpd.conf':
-    ensure  => 'file',
-    content => epp('vsftpd/vsftpd.conf.epp'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0600',
-  }
+    -> file { '/etc/vsftpd/vsftpd.conf':
+      ensure  => 'file',
+      content => epp('vsftpd/vsftpd.conf.epp'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0600',
+    }
 
-  ~> service { 'vsftpd':
-    ensure => 'running',
-    enable => true,
+    ~> service { 'vsftpd':
+      ensure => 'running',
+      enable => true,
+    }
+  } else {
+    service { 'vsftpd':
+      ensure => 'stopped',
+      enable => false,
+    }
   }
 }

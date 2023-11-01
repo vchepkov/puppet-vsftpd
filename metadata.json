@@ -1,6 +1,6 @@
 {
   "name": "vchepkov-vsftpd",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Vadym Chepkov",
   "summary": "Install and configure vsftpd",
   "license": "Apache-2.0",
